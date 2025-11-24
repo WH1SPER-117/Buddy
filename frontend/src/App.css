@@ -3,7 +3,7 @@
 .App {
   min-height: 100vh;
   display: flex;
-  background-image: url("./Assets/LoginBg.jpg"); /* Ensure your image path is correct */
+  background-image: url("../src/Components/login/BG.png"); /* Ensure your image path is correct */
   background-size: cover;
   background-position: center;
   flex-direction: column;
