@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import "./Login.css"; // reuse your Login.css for background & styles
+import "./Login.css";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -11,24 +11,41 @@ const SignIn = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    pic: "",
   });
+
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState("");
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (!selected) return;
+
+    if (!selected.type.startsWith("image/")) {
+      toast.warning("Please select a valid image file", {
+        position: "bottom-center",
+      });
+      return;
+    }
+
+    setFile(selected);
+    setPreview(URL.createObjectURL(selected));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const { name, email, password, confirmPassword, pic } = formData;
+    const { name, email, password, confirmPassword } = formData;
 
     if (!name || !email || !password || !confirmPassword) {
       toast.warning("Please fill all the fields", {
         position: "bottom-center",
-        autoClose: 5000,
       });
       setLoading(false);
       return;
@@ -37,116 +54,128 @@ const SignIn = () => {
     if (password !== confirmPassword) {
       toast.warning("Passwords do not match", {
         position: "bottom-center",
-        autoClose: 5000,
       });
       setLoading(false);
       return;
     }
 
     try {
-      const config = { headers: { "Content-Type": "application/json" } };
+      // IMPORTANT: Use FormData for file upload
+      const fd = new FormData();
+      fd.append("name", name);
+      fd.append("email", email);
+      fd.append("password", password);
+      if (file) fd.append("pic", file);
 
       const { data } = await axios.post(
         "http://localhost:5000/allUsers",
-        { name, email, password, pic },
-        config
+        fd,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
-      toast.success("Registration successful", {
+      toast.success("Account created successfully", {
         position: "bottom-center",
-        autoClose: 4000,
       });
 
-      // Save user data and token to localStorage (same behavior as Login)
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       navigate("/chatpage");
     } catch (error) {
       console.error("Register error:", error.response || error);
-      toast.error(
-        error.response?.data?.message || "Registration failed",
-        { position: "bottom-center", autoClose: 5000 }
-      );
+      toast.error(error.response?.data?.message || "Registration failed", {
+        position: "bottom-center",
+      });
       setLoading(false);
     }
   };
 
-  const handleGuest = () => {
-    setFormData({
-      name: "Guest User",
-      email: "guest@example.com",
-      password: "12345",
-      confirmPassword: "12345",
-      pic: "",
-    });
-  };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow bg-white/90">
       <h2 className="text-xl font-bold mb-4">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mb-4">
-          <label className="block mb-1">Name</label>
+          <label htmlFor="name" className="block mb-1">Name</label>
           <input
+            id="name"
             type="text"
             name="name"
             className="w-full border p-2 rounded"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Your name"
+            autoComplete="name"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block mb-1">Email</label>
+          <label htmlFor="email" className="block mb-1">Email</label>
           <input
+            id="email"
             type="email"
             name="email"
             className="w-full border p-2 rounded"
             value={formData.email}
             onChange={handleChange}
-            placeholder="you@example.com"
+            autoComplete="email"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block mb-1">Password</label>
+          <label htmlFor="password" className="block mb-1">Password</label>
           <input
+            id="password"
             type="password"
             name="password"
             className="w-full border p-2 rounded"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Password"
+            autoComplete="new-password"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block mb-1">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="block mb-1">Confirm Password</label>
           <input
+            id="confirmPassword"
             type="password"
             name="confirmPassword"
             className="w-full border p-2 rounded"
             value={formData.confirmPassword}
             onChange={handleChange}
-            placeholder="Confirm Password"
+            autoComplete="new-password"
             required
           />
         </div>
 
+        {/* FILE UPLOAD */}
         <div className="mb-4">
-          <label className="block mb-1">Profile picture URL (optional)</label>
+          <label htmlFor="pic" className="block mb-1">Profile Picture (optional)</label>
           <input
-            type="text"
+            id="pic"
+            type="file"
             name="pic"
-            className="w-full border p-2 rounded"
-            value={formData.pic}
-            onChange={handleChange}
-            placeholder="https://..."
+            accept="image/*"
+            onChange={handleFileChange}
+            className="w-full"
           />
+
+          {/* Preview */}
+          {preview && (
+            <div className="mt-2">
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-28 h-28 object-cover rounded"
+              />
+            </div>
+          )}
         </div>
 
         <button
@@ -155,14 +184,6 @@ const SignIn = () => {
           disabled={loading}
         >
           {loading ? "Creating account..." : "Create Account"}
-        </button>
-
-        <button
-          type="button"
-          className="w-full bg-gray-600 text-white p-2 rounded hover:bg-gray-700 mt-4"
-          onClick={handleGuest}
-        >
-          Fill as Guest
         </button>
       </form>
 

@@ -47,7 +47,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/allUsers/login", // Use backend URL
+        "http://localhost:5000/allUsers/login",
         { email, password },
         config
       );
@@ -73,6 +73,7 @@ const Login = () => {
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
       <h2 className="text-xl font-bold mb-4">Login</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label>Email</label>
@@ -85,6 +86,7 @@ const Login = () => {
             required
           />
         </div>
+
         <div className="mb-4">
           <label>Password</label>
           <input
@@ -96,6 +98,7 @@ const Login = () => {
             required
           />
         </div>
+
         <button
           type="submit"
           className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
@@ -103,6 +106,7 @@ const Login = () => {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+
         <button
           type="guest"
           className="w-full bg-gray-600 text-white p-2 rounded hover:bg-gray-700 mt-4"
@@ -113,7 +117,19 @@ const Login = () => {
           Login as Guest
         </button>
       </form>
+
       {message && <p className="mt-4 text-red-500">{message}</p>}
+
+      {/* Go to Sign Up */}
+      <div className="mt-5 text-center">
+        <p className="text-sm">Don't have an account?</p>
+        <button
+          onClick={() => navigate("/signup")}
+          className="text-blue-600 underline mt-1"
+        >
+          Create an Account
+        </button>
+      </div>
     </div>
   );
 };

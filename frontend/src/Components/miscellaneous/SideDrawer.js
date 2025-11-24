@@ -156,7 +156,7 @@ function SideDrawer() {
           className: "mb-0",
           style: { fontFamily: "'Work Sans', sans-serif", fontSize: "2rem" },
         },
-        "Quick Chat"
+        "Buddy"
       ),
       React.createElement(
         "div",

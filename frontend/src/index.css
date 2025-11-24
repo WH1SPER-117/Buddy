@@ -21,6 +21,7 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+/*
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -66,7 +67,7 @@ code {
   --ring: 224.3 76.3% 48%;
 }
 
-/* Custom colors for the home services platform */
+//Custom colors for the home services platform 
 :root {
   --blue-medium: #34729c;
   --blue-light: #6cb1da;
@@ -282,3 +283,4 @@ code {
     max-width: 1536px;
   }
 }
+*/
