@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;1,300&display=swap");
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("/frontend/src/Assets/LoginBg.jpg"); /* Ensure your image path is correct */
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav-tabs {
+  width: 100%;
+  justify-content: center;
+}
+
+.nav-tabs .nav-link {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00caff;
+  text-align: center;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #00caff;
+  color: white;
+}
+
+.nav-tabs .nav-link.disabled {
+  color: rgba(0, 0, 0, 0.5);
+}

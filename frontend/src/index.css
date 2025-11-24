@@ -1,0 +1,284 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+/* Custom colors for the home services platform */
+:root {
+  --blue-medium: #34729c;
+  --blue-light: #6cb1da;
+  --blue-lighter: #d1ecff;
+  --blue-dark: #1e5470;
+  --teal: #6ec1d1;
+  --teal-light: #c8eaec;
+}
+
+.bg-blue-medium {
+  background-color: var(--blue-medium);
+}
+
+.bg-blue-light {
+  background-color: var(--blue-light);
+}
+
+.bg-blue-lighter {
+  background-color: var(--blue-lighter);
+}
+
+.bg-blue-dark {
+  background-color: var(--blue-dark);
+}
+
+.bg-teal {
+  background-color: var(--teal);
+}
+
+.bg-teal-light {
+  background-color: var(--teal-light);
+}
+
+.text-blue-medium {
+  color: var(--blue-medium);
+}
+
+.text-blue-light {
+  color: var(--blue-light);
+}
+
+.text-blue-lighter {
+  color: var(--blue-lighter);
+}
+
+.text-blue-dark {
+  color: var(--blue-dark);
+}
+
+.text-teal {
+  color: var(--teal);
+}
+
+.text-teal-light {
+  color: var(--teal-light);
+}
+
+.border-blue-medium {
+  border-color: var(--blue-medium);
+}
+
+.border-blue-light {
+  border-color: var(--blue-light);
+}
+
+.border-blue-lighter {
+  border-color: var(--blue-lighter);
+}
+
+.border-blue-dark {
+  border-color: var(--blue-dark);
+}
+
+.border-teal {
+  border-color: var(--teal);
+}
+
+.border-teal-light {
+  border-color: var(--teal-light);
+}
+
+.fill-teal {
+  fill: var(--teal);
+}
+
+.from-blue-medium {
+  --tw-gradient-from: var(--blue-medium);
+}
+
+.from-blue-light {
+  --tw-gradient-from: var(--blue-light);
+}
+
+.from-blue-lighter {
+  --tw-gradient-from: var(--blue-lighter);
+}
+
+.from-blue-dark {
+  --tw-gradient-from: var(--blue-dark);
+}
+
+.from-teal {
+  --tw-gradient-from: var(--teal);
+}
+
+.from-teal-light {
+  --tw-gradient-from: var(--teal-light);
+}
+
+.to-blue-medium {
+  --tw-gradient-to: var(--blue-medium);
+}
+
+.to-blue-light {
+  --tw-gradient-to: var(--blue-light);
+}
+
+.to-blue-lighter {
+  --tw-gradient-to: var(--blue-lighter);
+}
+
+.to-blue-dark {
+  --tw-gradient-to: var(--blue-dark);
+}
+
+.to-teal {
+  --tw-gradient-to: var(--teal);
+}
+
+.to-teal-light {
+  --tw-gradient-to: var(--teal-light);
+}
+
+.via-teal-light {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--teal-light),
+    var(--tw-gradient-to);
+}
+
+.hover\:bg-blue-medium:hover {
+  background-color: var(--blue-medium);
+}
+
+.hover\:bg-blue-light:hover {
+  background-color: var(--blue-light);
+}
+
+.hover\:bg-blue-lighter:hover {
+  background-color: var(--blue-lighter);
+}
+
+.hover\:bg-blue-dark:hover {
+  background-color: var(--blue-dark);
+}
+
+.hover\:bg-teal:hover {
+  background-color: var(--teal);
+}
+
+.hover\:bg-teal-light:hover {
+  background-color: var(--teal-light);
+}
+
+.hover\:text-blue-medium:hover {
+  color: var(--blue-medium);
+}
+
+.hover\:text-blue-dark:hover {
+  color: var(--blue-dark);
+}
+
+.hover\:from-blue-dark:hover {
+  --tw-gradient-from: var(--blue-dark);
+}
+
+.hover\:to-blue-medium:hover {
+  --tw-gradient-to: var(--blue-medium);
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
