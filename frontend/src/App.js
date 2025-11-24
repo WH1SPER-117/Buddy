@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ChatPage from "./Pages/ChatPage";
 import Room from "./Components/Room/Room";
 import SignIn from "./Components/login/SignIn";
+import Header from "./Components/Home/Header";
 
 function App() {
   return (

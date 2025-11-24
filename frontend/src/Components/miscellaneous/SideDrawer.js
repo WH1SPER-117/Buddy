@@ -150,14 +150,14 @@ function SideDrawer() {
           )
         )
       ),
-      React.createElement(
+      /*React.createElement(
         "h3",
         {
           className: "mb-0",
           style: { fontFamily: "'Work Sans', sans-serif", fontSize: "2rem" },
         },
         "Buddy"
-      ),
+      ),*/
       React.createElement(
         "div",
         { className: "d-flex align-items-center" },

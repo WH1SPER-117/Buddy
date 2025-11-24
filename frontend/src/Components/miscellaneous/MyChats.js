@@ -80,7 +80,7 @@ const MyChats = ({ fetchAgain }) => {
           },
         },
         "My Chats"
-      ) /*,
+      ) ,
       React.createElement(
         GroupChatModal,
         null,
@@ -93,7 +93,7 @@ const MyChats = ({ fetchAgain }) => {
           "New Group Chat",
           React.createElement("i", { className: "fas fa-plus ms-1" })
         )
-      )*/
+      )
     ),
     React.createElement(
       "div",
