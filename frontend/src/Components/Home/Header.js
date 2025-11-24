@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, Menu, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import flogo from "../../Assets/F-logo.png";
+import flogo from "../../Assets/logo.png"
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);

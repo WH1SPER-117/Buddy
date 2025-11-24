@@ -16,7 +16,6 @@
 
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Home/Header";
-import Home from "./Components/Home/Home";
 import Footer from "./Components/Home/Footer";
 import Login from "./Components/login/Login";
 import { Container } from "react-bootstrap";
@@ -31,7 +30,6 @@ function App() {
     <div className="flex min-h-screen flex-col">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/room/:roomId" element={<Room />} />
       </Routes>

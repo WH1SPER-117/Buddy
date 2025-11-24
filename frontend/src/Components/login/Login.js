@@ -59,7 +59,7 @@ const Login = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/home");
+      navigate("/chatpage");
     } catch (error) {
       console.error("Login error:", error.response || error);
       toast.error(error.response?.data?.message || "Login failed", {
