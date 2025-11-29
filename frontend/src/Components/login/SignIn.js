@@ -60,7 +60,7 @@ const SignIn = () => {
     }
 
     try {
-      // IMPORTANT: Use FormData for file upload
+      // Use FormData for file upload
       const fd = new FormData();
       fd.append("name", name);
       fd.append("email", email);
@@ -77,13 +77,22 @@ const SignIn = () => {
         }
       );
 
+      // ---- important: persist and set axios default auth header ----
+      localStorage.setItem("userInfo", JSON.stringify(data));
+
+      // If token present, set axios default header for subsequent requests
+      if (data?.token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+      }
+
       toast.success("Account created successfully", {
         position: "bottom-center",
       });
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chatpage");
+
+      // Pass user data to ChatPage so it can use it immediately
+      navigate("/chatpage", { state: { userInfo: data } });
     } catch (error) {
       console.error("Register error:", error.response || error);
       toast.error(error.response?.data?.message || "Registration failed", {

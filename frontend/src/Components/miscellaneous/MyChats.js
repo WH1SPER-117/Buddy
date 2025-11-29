@@ -11,7 +11,7 @@ const MyChats = ({ fetchAgain }) => {
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   const toast = (options) => {
-    // Simulate Chakra UI toast with Bootstrap alert
+
     const alert = document.createElement("div");
     alert.className = `alert alert-${options.status} alert-dismissible fade show position-fixed`;
     alert.style.bottom = "10px";
@@ -81,7 +81,7 @@ const MyChats = ({ fetchAgain }) => {
         },
         "My Chats"
       ) ,
-      React.createElement(
+/*      React.createElement(
         GroupChatModal,
         null,
         React.createElement(
@@ -93,7 +93,7 @@ const MyChats = ({ fetchAgain }) => {
           "New Group Chat",
           React.createElement("i", { className: "fas fa-plus ms-1" })
         )
-      )
+      )*/
     ),
     React.createElement(
       "div",
