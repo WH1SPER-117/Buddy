@@ -5,20 +5,20 @@ Buddy is a real-time messaging and video calling application built with the MERN
 
 ***Key Features***
 
-Real-time Messaging   
-1-on-1 Video Calling    
-User Authentication  
-Modern UI   
-Scalable Backend  
+-Real-time Messaging   
+-1-on-1 Video Calling    
+-User Authentication  
+-Modern UI   
+-Scalable Backend  
 
 
 
 ***Tech Stack***
 
 
-**Frontend:**   React.js  
-**Backend:**   Node.js, Express.js  
-**Database:**   MongoDB  
-**Real-Time Communication:**  Socket.io  
-**Video Calling:**   ZegoCloud API  
-**Authentication:**   JSON Web Tokens (JWT)
+-**Frontend:**   React.js  
+-**Backend:**   Node.js, Express.js  
+-**Database:**   MongoDB  
+-**Real-Time Communication:**  Socket.io  
+-**Video Calling:**   ZegoCloud API  
+-**Authentication:**   JSON Web Tokens (JWT)
