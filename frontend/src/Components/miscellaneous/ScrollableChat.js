@@ -17,24 +17,52 @@ const ScrollableChat = ({ messages }) => {
   };
 
   // Function to detect URLs and make them clickable
-  const renderMessageContent = (content) => {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return content.split(urlRegex).map((part, index) =>
-      urlRegex.test(part) ? (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#1e90ff", textDecoration: "underline" }}
-        >
-          {part}
-        </a>
-      ) : (
-        part
-      )
+const renderMessageContent = (content) => {
+  const videoCallRegex = /\[video_call\](.*?)\[\/video_call\]/;
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+  // If it's a video call message
+  const match = content.match(videoCallRegex);
+  if (match) {
+    const link = match[1];
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "inline-block",
+          padding: "6px 12px",
+          background: "#0d6efd",
+          color: "#fff",
+          borderRadius: "4px",
+          textDecoration: "none",
+          fontWeight: "500",
+        }}
+      >
+        Join Video Call
+      </a>
     );
-  };
+  }
+
+  // Normal URL rendering
+  return content.split(urlRegex).map((part, index) =>
+    urlRegex.test(part) ? (
+      <a
+        key={index}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#1e90ff", textDecoration: "underline" }}
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+};
+
 
   return React.createElement(
     ScrollableFeed,
@@ -45,8 +73,7 @@ const ScrollableChat = ({ messages }) => {
             console.warn("Invalid message object:", m);
             return null;
           }
-          const isBot =
-            m.sender._id === "ai-bot" || m.sender.name === "AI Assistant";
+
           return React.createElement(
             "div",
             {
@@ -80,9 +107,7 @@ const ScrollableChat = ({ messages }) => {
                 {
                   className: "rounded-3 p-2",
                   style: {
-                    backgroundColor: isBot
-                      ? "#ff9999"
-                      : m.sender._id === user._id
+                    backgroundColor:  m.sender._id === user._id
                       ? "#BEE3F8"
                       : "#B9F5D0",
                     marginLeft: isSameSenderMargin(messages, m, i, user._id),

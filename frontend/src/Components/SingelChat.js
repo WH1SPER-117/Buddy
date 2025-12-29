@@ -152,7 +152,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const handleVideoCall = async () => {
     const roomId = Date.now().toString();
     const callLink = `${window.location.origin}/room/${roomId}`;
-    const messageContent = `Join my video call: ${callLink}`;
+    const messageContent = `[video_call]${callLink}[/video_call]`;
 
     try {
       const config = {
